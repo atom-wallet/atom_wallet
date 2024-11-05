@@ -1,37 +1,108 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+// import { Colors } from "@/constants/Colors";
+import { StyleSheet, View } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        // tabBarActiveTintColor: Colors.light.background,
         headerShown: false,
-      }}>
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: "#f5f5f0",
+          height: 60,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <View
+              style={[
+                { backgroundColor: focused ? "#c7f376" : "" },
+                styles.tabElement,
+              ]}
+            >
+              <TabBarIcon
+                name={"home"}
+                color={focused ? "#16120f" : color}
+                style={styles.tabIcon}
+              />
+            </View>
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="Cards"
         options={{
-          title: 'Explore',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <View
+              style={[
+                { backgroundColor: focused ? "#c7f376" : "" },
+                styles.tabElement,
+              ]}
+            >
+              <TabBarIcon
+                name={"credit-card"}
+                color={focused ? "#16120f" : color}
+                style={styles.tabIcon}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Transactions"
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                { backgroundColor: focused ? "#c7f376" : "" },
+                styles.tabElement,
+              ]}
+            >
+              <TabBarIcon
+                name={"arrow-switch"}
+                color={focused ? "#16120f" : color}
+                style={styles.tabIcon}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Manage"
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <View
+              style={[
+                { backgroundColor: focused ? "#c7f376" : "" },
+                styles.tabElement,
+              ]}
+            >
+              <TabBarIcon
+                name={"apps"}
+                color={focused ? "#16120f" : color}
+                style={styles.tabIcon}
+              />
+            </View>
           ),
         }}
       />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabElement: {
+    borderRadius: 10,
+  },
+  tabIcon: {
+    padding: 8,
+  },
+});
