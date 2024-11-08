@@ -1,8 +1,40 @@
+import { Ethereum, type ChainInfo } from "@particle-network/chains";
+import * as particleAuthCore from "@particle-network/rn-auth-core";
+import { Env, ParticleInfo } from "@particle-network/rn-base";
+import * as particleConnect from "@particle-network/rn-connect";
+import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function login() {
+  useEffect(() => {
+    initParticle();
+  }, []);
+
+  const initParticle = () => {
+    ParticleInfo.projectId = "e2c312b6-46ce-43c1-bae5-4c3bf2f279b8";
+    ParticleInfo.clientKey = "cKELtFHBoEi5eGyaRKcvrbHAM4qpQMaSX70z0ujw";
+
+    if (ParticleInfo.projectId == "" || ParticleInfo.clientKey == "") {
+      throw new Error(
+        "You need set project info, Get your project id and client from dashboard, https://dashboard.particle.network"
+      );
+    }
+
+    const chainInfo: ChainInfo = Ethereum;
+    const env = Env.Dev;
+    const metadata = {
+      url: "https://connect.particle.network",
+      icon: "https://connect.particle.network/icons/512.png",
+      name: "Particle Connect",
+      description: "Particle Wallet",
+    };
+
+    particleConnect.init(chainInfo, env, metadata);
+    particleAuthCore.init();
+  };
+
   return (
     <SafeAreaView>
       <View
