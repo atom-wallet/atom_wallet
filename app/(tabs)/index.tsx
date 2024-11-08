@@ -1,10 +1,7 @@
-import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Octicons from "@expo/vector-icons/Octicons";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  GestureHandlerRootView,
-  ScrollView,
-} from "react-native-gesture-handler";
 
 export default function HomeScreen() {
   return (
@@ -15,10 +12,10 @@ export default function HomeScreen() {
             <Text style={styles.headerText}>Atom</Text>
             <View style={styles.iconContainer}>
               <Octicons name="bell" size={24} color="black" />
-              <Image
+              {/* <Image
                 source={require("../../assets/images/Default_pfp.png")}
                 style={styles.profileImage}
-              />
+              /> */}
             </View>
           </View>
           <View style={styles.balanceCard}>
