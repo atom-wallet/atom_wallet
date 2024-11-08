@@ -2,12 +2,13 @@ import { Ethereum, type ChainInfo } from "@particle-network/chains";
 import * as particleAuthCore from "@particle-network/rn-auth-core";
 import { Env, ParticleInfo } from "@particle-network/rn-base";
 import * as particleConnect from "@particle-network/rn-connect";
+import { Link } from "expo-router";
 import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function login() {
+  const isLoggedIn = false;
   useEffect(() => {
     initParticle();
   }, []);
@@ -91,9 +92,12 @@ export default function login() {
             <Text style={{ color: "white", fontSize: 36 }}>Spend Cash</Text>
             <Text style={{ color: "#c7f376", fontSize: 36 }}>Anywhere.</Text>
           </View>
-          <TouchableOpacity style={{ backgroundColor: "#c7f376", padding: 10, borderRadius: 10, alignItems: "center" }}>
+          <Link
+            href="/selectchain"
+            style={{ backgroundColor: "#c7f376", padding: 10, borderRadius: 10, alignItems: "center" }}
+          >
             <Text style={{ color: "black", fontSize: 20 }}>Login</Text>
-          </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </SafeAreaView>
