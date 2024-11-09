@@ -116,9 +116,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
-        manifestPlaceholders["PN_PROJECT_ID"] = "e2c312b6-46ce-43c1-bae5-4c3bf2f279b8"
-        manifestPlaceholders["PN_PROJECT_CLIENT_KEY"] = "cKELtFHBoEi5eGyaRKcvrbHAM4qpQMaSX70z0ujw"
-        manifestPlaceholders["PN_APP_ID"] = "sqG6qzc5friWmlBDbPCKesOHnMwSqCNriUuwF4hW"
+        manifestPlaceholders["PN_PROJECT_ID"] = "4905d9f5-aba7-46b7-8dc4-d804df38100b"
+        manifestPlaceholders["PN_PROJECT_CLIENT_KEY"] = "cBqmOYvCLUldTiPUamdyCgzEdMb9TwtrBZi1xJlo"
+        manifestPlaceholders["PN_APP_ID"] = "384c3e48-cc7e-4581-9048-e3b63f217f88"
     }
     configurations.all {
         resolutionStrategy {

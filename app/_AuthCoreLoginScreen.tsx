@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, Button, FlatList } from 'react-native';
-import { Picker } from "@react-native-picker/picker";
-import * as particleConnect from "@particle-network/rn-connect";
-import { LoginType, SocialLoginPrompt, CommonError, SupportAuthType } from "@particle-network/rn-base";
-import { WalletType } from "@particle-network/rn-connect";
-import Toast from 'react-native-toast-message';
+import { accountInfoAtom } from "@/store/global.store";
 import * as particleAuthCore from "@particle-network/rn-auth-core";
+import { CommonError, LoginType, SocialLoginPrompt, SupportAuthType } from "@particle-network/rn-base";
+import * as particleConnect from "@particle-network/rn-connect";
+import { WalletType } from "@particle-network/rn-connect";
+import { Picker } from "@react-native-picker/picker";
+import { useAtom } from "jotai";
+import React, { useState } from 'react';
+import { Button, FlatList, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 interface LoginTypesScreenProps {
     visible: boolean;
     onClose: () => void;
@@ -70,6 +72,7 @@ const AuthCoreLoginScreen = () => {
     const [loginTypesModalVisible, setLoginTypesModalVisible] = useState(false);
     const [selectedSupportAuthTypes, setSelectedSupportAuthTypes] = useState<SupportAuthType[]>([]);
     const [account, setAccount] = useState<string>('');
+    const [, setAccountInfo] = useAtom(accountInfoAtom);
 
     const handleLoginTypesSelect = (types: string[]) => {
         var supportAuthTypes: SupportAuthType[] = [];
@@ -104,6 +107,8 @@ const AuthCoreLoginScreen = () => {
         };
         try {
             const account = await particleConnect.connect(WalletType.AuthCore, connectConfig)
+
+            setAccountInfo(account);
 
             console.log('connect success', account);
 
