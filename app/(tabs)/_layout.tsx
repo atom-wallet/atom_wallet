@@ -6,7 +6,7 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { StyleSheet, View } from "react-native";
 
 export default function TabLayout() {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   if (!isLoggedIn) {
     return <Redirect href="/login" />;
